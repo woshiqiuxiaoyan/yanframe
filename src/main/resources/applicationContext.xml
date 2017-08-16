@@ -11,7 +11,12 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.yan" />
+    <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。 -->
+    <context:component-scan base-package="com.system,com.user"> <!-- base-package如果多个，用“,”分隔 -->
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
     <!-- 引入属性文件 -->
     <context:property-placeholder location="classpath:config/db.properties" />
 
@@ -47,6 +52,6 @@
     <tx:annotation-driven transaction-manager="transactionManager" />
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="net.aazj.mapper" />
+        <property name="basePackage" value="com.system.mapper,com.user.mapper" />
     </bean>
 </beans>
