@@ -11,17 +11,23 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--启用注解驱动来扫描controller-->
-    <mvc:annotation-driven />
+    <!--启用注解驱动来扫描controller 包含了 映射器 和 适配器 -->
+    <mvc:annotation-driven ></mvc:annotation-driven>
+
+    <!-- 完成请求和注解POJO的映射 -->
+
+    <!-- 处理器 -->
 
     <!-- springmvc的配置文件中不扫描带有@Service注解的类 -->
-    <context:component-scan base-package="com.system,com.user">
+    <context:component-scan base-package="com.system.controller,com.user.controller">
+        <!--排除service-->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
 
-    <!--视图解析器-->
+
+    <!--视图解析器  InternalResourceView，利用它来展现jsp （实现了jstlview） 以后要前后台分离 换一个视图解析器 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/" />
+        <property name="prefix" value="/pages/" />
         <property name="suffix" value=".jsp" />
     </bean>
 </beans>

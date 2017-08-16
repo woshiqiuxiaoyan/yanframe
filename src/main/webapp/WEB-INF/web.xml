@@ -9,7 +9,6 @@
         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <display-name>Archetype Created Web Application</display-name>
 
-
     <!--springDispatcherServlet start-->
     <servlet>
         <servlet-name>dispatcherServlet</servlet-name>
@@ -23,7 +22,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcherServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>*.html</url-pattern>
     </servlet-mapping>
     <!--springDispatcherServlet end-->
 
