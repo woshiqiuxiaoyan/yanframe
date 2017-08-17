@@ -1,5 +1,7 @@
 package com.user.service;
 
+import com.user.po.TDemo;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,6 @@ import java.util.List;
  */
 public interface TestService {
 
-     List queryList();
+     List<TDemo> queryList();
 
 }

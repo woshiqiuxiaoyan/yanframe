@@ -2,6 +2,7 @@ package com.user.po;
 
 import org.joda.time.DateTime;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -9,30 +10,18 @@ import java.io.Serializable;
  */
 
 public class TDemo implements Serializable {
+
+
     private int id;
+
+    @NotNull(message = "{tdemo.userName.null}")
     private String userName;
 
-
-
     private int age;
+
     private DateTime createTime;
+
     private DateTime updateTime;
-
-    public DateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(DateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public DateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(DateTime updateTime) {
-        this.updateTime = updateTime;
-    }
 
     public int getId() {
         return id;
@@ -56,6 +45,22 @@ public class TDemo implements Serializable {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public DateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(DateTime createTime) {
+        this.createTime = createTime;
+    }
+
+    public DateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(DateTime updateTime) {
+        this.updateTime = updateTime;
     }
 
     @Override
