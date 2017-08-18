@@ -1,5 +1,7 @@
 package com.user.controller;
 
+import com.system.controller.BaseController;
+import com.system.exception.CustomException;
 import com.user.controller.validation.VaildatorGroup1;
 import com.user.po.TDemo;
 import com.user.service.TestService;
@@ -25,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("TestController")
 @Controller
-public class TestController {
+public class TestController extends BaseController {
 
     @Autowired
     public TestService testService;
@@ -192,21 +194,6 @@ public class TestController {
     public String testRepairDisplay(@ModelAttribute(value = "items") TDemo t, BindingResult bindingResult, Model model) {
         try {
 
-        /*    if (bindingResult.hasErrors()) {
-
-                int lenght = bindingResult.getAllErrors().size();
-
-                for (int i = 0 ; i < lenght; i++) {
-
-                    String aa = bindingResult.getAllErrors().get(i).getDefaultMessage();
-
-                    aa = new String(aa.getBytes("ISO-8859-1"),"utf-8");
-
-                    System.out.println(aa);
-
-                }
-
-            }*/
             System.out.println(t);
 
             model.addAttribute("msg", "返回成功");
@@ -214,6 +201,45 @@ public class TestController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        return "subform";
+
+    }
+
+
+    /**
+     * 测试  spring 全局异常处理器 CustomExceptionResolver
+     *
+     * @param t
+     * @ModelAttribute 回显的key
+     */
+    @RequestMapping(value = "/testCustomExceptionResolver", method = {RequestMethod.POST, RequestMethod.GET})
+    public String testCustomExceptionResolver(@ModelAttribute(value = "items") TDemo t, BindingResult bindingResult, Model model) throws CustomException {
+
+        System.out.println(t);
+
+        model.addAttribute("msg", "返回成功");
+        if (true) {
+//            测试用户自定义异常
+//            throw new CustomException("测试异常");
+        }
+//            测试系统自定义异常
+        int i = 1 / 0;
+
+        return "subform";
+
+    }
+
+
+    /**
+     * 测试  图片上传
+     *
+     * @param
+     * @ModelAttribute 回显的key
+     */
+    @RequestMapping(value = "/testUploadPic", method = {RequestMethod.POST, RequestMethod.GET})
+    public String testUploadPic() throws CustomException {
 
 
         return "subform";

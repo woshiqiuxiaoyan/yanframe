@@ -26,6 +26,16 @@
 
     </form>
 
+    <%--图片上传--%>
+    <form method="post" action="${path}testRepairDisplay.html" >
+
+        ${tdemotest.userName}
+        <input type="text" name="userName" value="${items.userName}" /> <br>
+        <input type="text" name="age" value="${items.age}" /><br>
+        <input type="submit" value="提交" /><br>
+
+    </form>
+
 
 </body>
 </html>
