@@ -1,7 +1,10 @@
 package com.user.po;
 
+import com.user.controller.validation.VaildatorGroup1;
+import org.hibernate.validator.constraints.Length;
 import org.joda.time.DateTime;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -15,8 +18,10 @@ public class TDemo implements Serializable {
     private int id;
 
     @NotNull(message = "{tdemo.userName.null}")
+    @Length(min = 5, max = 10, message = "{tdemo.userName.size}")
     private String userName;
 
+    @Min(value = 10,message = "{tdemo.userName.age.min}",groups = {VaildatorGroup1.class})
     private int age;
 
     private DateTime createTime;

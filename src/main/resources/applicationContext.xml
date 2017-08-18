@@ -52,4 +52,9 @@
         <!--如果有多个mapper,中间用半角逗号分隔-->
         <property name="basePackage" value="com.user.mapper" />
     </bean>
+
+
+
+
+
 </beans>
