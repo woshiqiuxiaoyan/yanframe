@@ -19,6 +19,8 @@ public class BaseController {
     @ExceptionHandler
     public String exp(HttpServletRequest request, Exception ex) {
 
+        ex.printStackTrace();
+
         CustomException customException = null;
 
         //解析全局错误

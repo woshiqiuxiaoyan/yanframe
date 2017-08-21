@@ -7,10 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
-<%
-    String path = request.getContextPath()+"/";
 
-%>
 <html>
 <head>
     <title>测试表单页面</title>
@@ -26,12 +23,10 @@
 
     </form>
 
+    <h2>图片上传</h2>
     <%--图片上传--%>
-    <form method="post" action="${path}testRepairDisplay.html" >
-
-        ${tdemotest.userName}
-        <input type="text" name="userName" value="${items.userName}" /> <br>
-        <input type="text" name="age" value="${items.age}" /><br>
+    <form method="post" action="${pageContext.request.contextPath}/TestController/testUploadPic.html" enctype="multipart/form-data">
+        <input type="file" name="testFile"  /> <br>
         <input type="submit" value="提交" /><br>
 
     </form>

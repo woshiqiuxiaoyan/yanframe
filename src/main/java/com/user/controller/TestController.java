@@ -3,6 +3,7 @@ package com.user.controller;
 import com.system.controller.BaseController;
 import com.system.exception.CustomException;
 import com.user.controller.validation.VaildatorGroup1;
+import com.user.po.SimplePojo;
 import com.user.po.TDemo;
 import com.user.service.TestService;
 import org.joda.time.DateTime;
@@ -11,14 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -232,17 +232,44 @@ public class TestController extends BaseController {
     }
 
 
-    /**
+    /**A
      * 测试  图片上传
      *
      * @param
      * @ModelAttribute 回显的key
      */
     @RequestMapping(value = "/testUploadPic", method = {RequestMethod.POST, RequestMethod.GET})
-    public String testUploadPic() throws CustomException {
+    public String testUploadPic(@RequestParam("testFile") MultipartFile uploadFile,HttpServletRequest request) throws CustomException, IOException {
 
+        String originFileName = uploadFile.getOriginalFilename();
+
+        //前半部分路径
+        String leftPath =  request.getServletContext().getRealPath("/uploadimages");
+
+        File file = new File(leftPath,originFileName);
+
+        uploadFile.transferTo(file);
 
         return "subform";
+
+    }
+
+
+
+    /**A
+     * 测试  json数据转送
+     *
+     * @param
+     * @ModelAttribute 回显的key
+     */
+    @RequestMapping(value = "/testJsonTranserf", method = {RequestMethod.POST, RequestMethod.GET})//,produces = "application/json")
+    public @ResponseBody
+    SimplePojo testJsonTranserf(TDemo tDemo) throws Exception, IOException {
+        tDemo = new TDemo();
+        tDemo.setUserName("测试json窜");
+        SimplePojo smpojo = new SimplePojo();
+        smpojo.setUserName("丘小燕");
+        return smpojo;
 
     }
 
