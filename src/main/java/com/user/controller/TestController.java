@@ -275,4 +275,20 @@ public class TestController extends BaseController {
     }
 
 
+    /**A
+     * 测试  restful 支持
+     *
+     * @param
+     * @ModelAttribute 回显的key
+     */
+    @RequestMapping(value = "/testRestFul/{userName}/{age}", method = {RequestMethod.POST, RequestMethod.GET})//,produces = "application/json")
+    public @ResponseBody
+    SimplePojo testRestFul(@PathVariable("userName") String username,@PathVariable("age") int age) throws Exception, IOException {
+        SimplePojo smpojo = new SimplePojo();
+        smpojo.setUserName(username);
+        smpojo.setAge(age);
+        return smpojo;
+
+    }
+
 }

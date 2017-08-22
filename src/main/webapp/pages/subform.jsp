@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
-<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js" ></script>
+<script src="${pageContext.request.contextPath}/static/js/jquery-3.2.1.min.js" ></script>
 
 <html>
 <head>

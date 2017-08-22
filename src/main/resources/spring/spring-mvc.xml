@@ -18,7 +18,15 @@
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="defaultCharset" value="UTF-8"/>
             </bean>
-            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4"/>
+
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>application/*+json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
 
@@ -32,12 +40,18 @@
         </constructor-arg>
     </bean>
 
+
+
+
     <!-- 处理器 -->
     <!-- springmvc的配置文件中不扫描带有@Service注解的类 -->
     <context:component-scan base-package="com.system.controller,com.user.controller">
         <!--排除service-->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
+
+    <!--静态资源解析-->
+    <mvc:resources mapping="/static/**/" location="/static/" />
 
 
     <!--视图解析器  InternalResourceView，利用它来展现jsp （实现了jstlview） 以后要前后台分离 换一个视图解析器 -->
@@ -102,5 +116,17 @@
         <property name="defaultEncoding" value="UTF-8" />
         <property name="resolveLazily" value="true" />
     </bean>
+
+
+    <!--拦截器配置-->
+    <mvc:interceptors>
+        <!--可以配置多个顺序执行 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.system.common.CustomerHandlerInterceptor"></bean>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+
 
 </beans>
