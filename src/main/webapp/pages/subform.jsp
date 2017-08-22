@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
+<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js" ></script>
 
 <html>
 <head>
@@ -14,7 +15,7 @@
 </head>
 <body>
     ${msg}
-    <form method="post" action="${path}testRepairDisplay.html">
+    <form method="post" action="${pageContext.request.contextPath}testRepairDisplay.html">
 
         ${tdemotest.userName}
         <input type="text" name="userName" value="${items.userName}" /> <br>
@@ -34,3 +35,23 @@
 
 </body>
 </html>
+<script>
+    $(document).ready(function(){
+        $.ajax({
+            type: "POST",
+            url: ${pageContext.request.contextPath}+"TestController/testJsonTranserf.html",
+            dataType: "json",
+            success: function(data){
+                console.log(data);
+                alert(data)
+
+            },error:function (error) {
+                console.log(error)
+                alert("error:"+error)
+            }
+        });
+
+    });
+
+
+</script>

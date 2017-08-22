@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Date: 2017/8/21
  * Time: 10:54
  */
-public class SimplePojo implements Serializable {
+public class SimplePojo   {
 
 
     private String userName;

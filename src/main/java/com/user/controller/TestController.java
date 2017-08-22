@@ -264,7 +264,8 @@ public class TestController extends BaseController {
      */
     @RequestMapping(value = "/testJsonTranserf", method = {RequestMethod.POST, RequestMethod.GET})//,produces = "application/json")
     public @ResponseBody
-    SimplePojo testJsonTranserf(TDemo tDemo) throws Exception, IOException {
+    SimplePojo testJsonTranserf(@RequestBody TDemo tDemo) throws Exception, IOException {
+        System.out.println("我是测试json");
         tDemo = new TDemo();
         tDemo.setUserName("测试json窜");
         SimplePojo smpojo = new SimplePojo();
