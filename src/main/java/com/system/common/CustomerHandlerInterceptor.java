@@ -1,5 +1,7 @@
 package com.system.common;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,18 +18,20 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CustomerHandlerInterceptor implements HandlerInterceptor {
 
+    private Logger log = LoggerFactory.getLogger("enterUrl");
     //进入Handler之前
     //应用场景：比如登录拦截
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         //return false 拦截、return true 放行
-        System.out.println("我是拦截器preHandle");
+
+         log.info(httpServletRequest.getRequestURI());
         return true;
     }
 
     //进入Handler之后,返回ModelAndView之前
     //应用场景：从ModelAndView 发出：将公用的模型数据在这里传到视图（比如：菜单导航），也可以在这里统一指定视图
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-        System.out.println("我是拦截器postHandle");
+        log.info("我是拦截器postHandle");
     }
 
 

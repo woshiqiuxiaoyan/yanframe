@@ -7,6 +7,8 @@ import com.user.po.SimplePojo;
 import com.user.po.TDemo;
 import com.user.service.TestService;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -290,5 +292,25 @@ public class TestController extends BaseController {
         return smpojo;
 
     }
+
+
+    private Logger log = LoggerFactory.getLogger(TestController.class);
+
+    /**A
+     * 测试  日志
+     *
+     * @param
+     * @ModelAttribute 回显的key
+     */
+    @RequestMapping(value = "/testLog/{userName}", method = {RequestMethod.POST, RequestMethod.GET})//,produces = "application/json")
+    public @ResponseBody
+    SimplePojo testLog(@PathVariable("userName") String username ) throws Exception, IOException {
+        log.debug("试试...");
+        SimplePojo smpojo = new SimplePojo();
+        smpojo.setUserName(username);
+        return smpojo;
+
+    }
+
 
 }
