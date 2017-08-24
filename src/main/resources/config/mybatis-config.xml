@@ -18,6 +18,8 @@
         <setting name="localCacheScope"   value="SESSION"/>
         <setting name="jdbcTypeForNull" value="OTHER"/>
         <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+        <!--用来打印日志-->
+        <setting name="logPrefix" value="dao."/>
     </settings>
 
     <!--别名批量扫描pojo-->

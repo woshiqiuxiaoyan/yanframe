@@ -1,6 +1,7 @@
 package com.user.po;
 
 import com.user.controller.validation.VaildatorGroup1;
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.joda.time.DateTime;
 

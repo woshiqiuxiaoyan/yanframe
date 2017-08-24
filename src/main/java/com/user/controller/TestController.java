@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by t on 2017/8/16.
@@ -266,14 +267,9 @@ public class TestController extends BaseController {
      */
     @RequestMapping(value = "/testJsonTranserf", method = {RequestMethod.POST, RequestMethod.GET})//,produces = "application/json")
     public @ResponseBody
-    SimplePojo testJsonTranserf(@RequestBody TDemo tDemo) throws Exception, IOException {
-        System.out.println("我是测试json");
-        tDemo = new TDemo();
-        tDemo.setUserName("测试json窜");
-        SimplePojo smpojo = new SimplePojo();
-        smpojo.setUserName("丘小燕");
-        return smpojo;
-
+    Map<String, Object> testJsonTranserf(@RequestBody Map<String,Object> map) throws Exception, IOException {
+        log.info("我是测试json");
+        return map;
     }
 
 

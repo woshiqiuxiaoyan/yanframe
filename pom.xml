@@ -52,7 +52,13 @@
         </dependency>
         <!--spring jackson 转json的包 RequestBody 和ResponseBody end-->
 
-
+        <!--lombok  start-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+        </dependency>
+        <!--lombok  end-->
 
         <!-- 文件上传所依赖的jar包 start-->
         <dependency>
