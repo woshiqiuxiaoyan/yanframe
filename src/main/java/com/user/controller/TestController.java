@@ -6,6 +6,7 @@ import com.user.controller.validation.VaildatorGroup1;
 import com.user.po.SimplePojo;
 import com.user.po.TDemo;
 import com.user.service.TestService;
+import com.yan.frame.commonuse.SimpleService;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -267,7 +268,7 @@ public class TestController extends BaseController {
      */
     @RequestMapping(value = "/testJsonTranserf", method = {RequestMethod.POST, RequestMethod.GET})//,produces = "application/json")
     public @ResponseBody
-    Map<String, Object> testJsonTranserf(@RequestBody Map<String,Object> map) throws Exception, IOException {
+    Map<String, Object> testJsonTranserf(@RequestBody    Map<String,Object> map) throws Exception, IOException {
         log.info("我是测试json");
         return map;
     }
@@ -308,5 +309,20 @@ public class TestController extends BaseController {
 
     }
 
+    /**A
+     * 测试 maven相互依赖
+     *
+     * @param
+     * @ModelAttribute 回显的key
+     */
+    @RequestMapping(value = "/testMaven", method = {RequestMethod.POST, RequestMethod.GET})//,produces = "application/json")
+    public @ResponseBody
+    SimpleService testMaven() throws Exception, IOException {
+        log.debug("试试...");
+        SimpleService smpojo  =new SimpleService();
+
+        return smpojo;
+
+    }
 
 }
