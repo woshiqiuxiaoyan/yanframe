@@ -11,4 +11,10 @@ public interface TestService {
 
      List<TDemo> queryList();
 
+    /**
+     * 插入
+     * @param td
+     * @return
+     */
+    int insertTdemo(TDemo td);
 }

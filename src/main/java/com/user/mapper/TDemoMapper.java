@@ -11,4 +11,5 @@ public interface TDemoMapper {
 
     List<TDemo> getUser();
 
+    int insertTdemo(TDemo td);
 }

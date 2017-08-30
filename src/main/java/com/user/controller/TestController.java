@@ -7,6 +7,7 @@ import com.user.po.SimplePojo;
 import com.user.po.TDemo;
 import com.user.service.TestService;
 import com.yan.frame.commonuse.SimpleService;
+import com.yan.frame.pojo.TUserInfo;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -57,13 +59,31 @@ public class TestController extends BaseController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/testDao")
-    public ModelAndView testDao(TDemo td, Model model) {
-        System.out.println(td);
+    @RequestMapping(value = "/testDao",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public List<TDemo> testDao(TDemo td, Model model,HttpServletRequest request) throws UnsupportedEncodingException {
+
+        log.error(td.getUserName()+new String( td.getUserName().getBytes("iso-8859-1"),"UTF-8"));
+        log.info(  td.toString());
         List<TDemo> list = testService.queryList();
-        ModelAndView mav = new ModelAndView("test");
-        mav.addObject("tmp", "123");
-        return mav;
+        return list;
+    }
+
+
+    /**
+     * 测试 dao事务
+     *
+     * @param td
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/testInsertDao",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public TDemo testInsertDao(TDemo td, Model model) {
+
+        log.info("入参："+td.toString());
+        int affect = testService.insertTdemo(td);
+        return td;
     }
 
 
@@ -151,6 +171,7 @@ public class TestController extends BaseController {
     @RequestMapping(value = "/testVildatorGroup001", method = {RequestMethod.POST, RequestMethod.GET})
     public void testVildatorGroup001(@Validated(value = VaildatorGroup1.class) TDemo t, BindingResult bindingResult, HttpServletResponse resp) {
         try {
+            TUserInfo userInfo = new TUserInfo();
 
             if (bindingResult.hasErrors()) {
 

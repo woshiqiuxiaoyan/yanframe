@@ -38,6 +38,7 @@
     <logger name="ch.qos.logback" level="WARN"/>
     <logger name="com.user" level="DEBUG"/>
     <logger name="enterUrl" level="DEBUG"/>
+    <logger name="CustomSystemLog" level="DEBUG"/>
 
 
     <root level="ERROR">

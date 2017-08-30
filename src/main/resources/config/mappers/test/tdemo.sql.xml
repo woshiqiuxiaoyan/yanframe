@@ -8,5 +8,28 @@
         select * from t_demo
     </select>
 
+    <!--插入tdemo-->
+    <insert id="insertTdemo" parameterType="TDemo">
+
+        <selectKey resultType="java.lang.Short" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO t_demo
+        (
+            username,
+            age,
+            createtime,
+            updatetime
+        )
+        VALUES
+        (
+            #{userName},
+            #{age},
+            NOW(3),
+            NOW(3)
+        )
+
+
+    </insert>
 
 </mapper>

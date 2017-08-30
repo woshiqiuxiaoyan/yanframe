@@ -1,9 +1,12 @@
 package com.user.service.impl;
 
 import com.user.mapper.TDemoMapper;
+import com.user.po.TDemo;
 import com.user.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,6 +24,14 @@ public class TestServiceImpl implements TestService {
 //                .getBean(TDemoMapper.class);
 
         return tDemoMapper.getUser();
+    }
 
+    @Transactional(propagation= Propagation.REQUIRED)
+    public int insertTdemo(TDemo td) {
+        int affect  = tDemoMapper.insertTdemo(td);
+
+         int b =    affect/0;
+
+        return affect;
     }
 }
