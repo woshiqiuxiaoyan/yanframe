@@ -70,7 +70,7 @@
     <!--init-param 和 context-param 的区别，从名字上就可以看得出，后者是相对于整个web应用的，而前者是针对单个servlet的。-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:applicationContext.xml</param-value>
+        <param-value>classpath:config/datasource/*.xml</param-value>
     </context-param>
     <!--spring  监听器 end-->
 

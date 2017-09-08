@@ -1,33 +1,35 @@
 package com.user.controller;
 
+import com.pojo.User;
+import com.redis.util.RedisClientTemplate;
+import com.redis.util.RedisUtil;
 import com.user.po.TDemo;
 import com.user.service.TestService;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by t on 2017/8/16.
  */
 @RequestMapping("TestController2")
-@Controller
+@RestController
 public class TestController2 {
 
     @Autowired
     public TestService testService;
 
+    @Autowired
+    private  RedisClientTemplate redisClientTemplate;
+
+    @Autowired
+    private RedisUtil redisUtil ;
 
 
     /**
@@ -64,6 +66,24 @@ public class TestController2 {
 
     }
 
+    /**
+     * 测试 redis 技持
+     */
+    @RequestMapping(value = "/testRedis")
+    public User testRedis( ) {
+        User user = new User();
+        try {
+
+
+            user.setId(123);
+            user.setName("丘小燕");
+            redisUtil.addSet("31","132");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 
     
 

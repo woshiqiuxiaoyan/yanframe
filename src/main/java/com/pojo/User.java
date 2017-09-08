@@ -2,8 +2,10 @@ package com.pojo;
 
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
+
 @Alias("User")
-public class User {
+public class User implements Serializable{
 
     private Integer id;
 

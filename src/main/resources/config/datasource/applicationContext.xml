@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/tx
@@ -17,12 +17,28 @@
     </context:component-scan>
 
     <!--&lt;!&ndash; 引入属性文件 &ndash;&gt;-->
-    <context:property-placeholder location="classpath:config/db.properties" />
+    <context:property-placeholder location="classpath:config/db.properties,classpath:config/redis.properties" />
+
+    <!--redis 整合 spring-data-redis-->
+   <!-- <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="${redis.maxIdle}" />
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" />
+    </bean>
+
+
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"  p:pool-config-ref="poolConfig"/>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+        <property name="connectionFactory"   ref="connectionFactory" />
+    </bean>-->
+
+
 
     <!--&lt;!&ndash; 配置数据源 &ndash;&gt;-->
     <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="driverClassName" value="${jdbc_driverClassName}" />
         <property name="url" value="${jdbc_url}" />
+        <property name="driverClassName" value="${jdbc_driverClassName}" />
         <property name="username" value="${jdbc_username}" />
         <property name="password" value="${jdbc_password}" />
         <!-- 初始化连接大小 -->
@@ -40,7 +56,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:config/mybatis-config.xml" />
-        <property name="mapperLocations" value="classpath*:config/mappers/**/*.xml" />
+        <property name="mapperLocations" value="classpath*:config/mappers/test/tdemo.sql.xml" />
     </bean>
 
     <!--+++++++++++++++++++++++++++++++++事务开始+++++++++++++++++++++++++++++++++-->
