@@ -39,6 +39,8 @@
     <logger name="com.user" level="DEBUG"/>
     <logger name="enterUrl" level="DEBUG"/>
     <logger name="CustomSystemLog" level="DEBUG"/>
+    <logger name="CustomerForAnnotationHandlerInterceptor" level="DEBUG"/>
+
 
 
     <root level="ERROR">

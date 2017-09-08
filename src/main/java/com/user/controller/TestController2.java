@@ -3,6 +3,7 @@ package com.user.controller;
 import com.pojo.User;
 import com.redis.util.RedisClientTemplate;
 import com.redis.util.RedisUtil;
+import com.system.custominterface.HelloYan;
 import com.user.po.TDemo;
 import com.user.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,7 @@ public class TestController2 {
     /**
      * 测试 redis 技持
      */
+    @HelloYan
     @RequestMapping(value = "/testRedis")
     public User testRedis( ) {
         User user = new User();
@@ -77,7 +79,7 @@ public class TestController2 {
 
             user.setId(123);
             user.setName("丘小燕");
-            redisUtil.addSet("31","132");
+            redisUtil.addSet("存入","123123123");
 
         } catch (Exception e) {
             e.printStackTrace();

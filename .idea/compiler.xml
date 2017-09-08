@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="yanframe-web" target="1.5" />
+      <module name="yanframe-web" target="1.6" />
       <module name="yanframeweb" target="1.5" />
     </bytecodeTargetLevel>
   </component>

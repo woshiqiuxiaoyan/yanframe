@@ -17,13 +17,11 @@
         <constructor-arg index="0" ref="jedisPoolConfig" />
         <constructor-arg index="1">
             <list>
-                <bean name="slaver" class="redis.clients.jedis.JedisShardInfo">
-                    <constructor-arg index="0" value="${redis.host}"/>
-                    <constructor-arg index="1" value="${redis.port}" type="int"/>
-                </bean>
-                <bean name="master" class="redis.clients.jedis.JedisShardInfo">
-                    <constructor-arg index="0" value="${redis.host}"/>
-                    <constructor-arg index="1" value="${redis.port}" type="int"/>
+                <bean class="redis.clients.jedis.JedisShardInfo">
+                    <constructor-arg index="0" value="${redis.host}" />
+                    <constructor-arg index="1" value="${redis.port}" />
+                    <constructor-arg index="2" value="${redis.timeout}" />
+                    <property name="password" value="${redis.pass}"></property>
                 </bean>
             </list>
         </constructor-arg>

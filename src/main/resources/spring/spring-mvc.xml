@@ -125,6 +125,11 @@
             <mvc:mapping path="/**"/>
             <bean class="com.system.common.CustomerHandlerInterceptor"></bean>
         </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.system.common.CustomerForAnnotationHandlerInterceptor"></bean>
+        </mvc:interceptor>
     </mvc:interceptors>
 
 
